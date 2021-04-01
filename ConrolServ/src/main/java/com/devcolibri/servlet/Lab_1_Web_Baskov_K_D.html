@@ -1,0 +1,249 @@
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Лаба Веб 1</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        var Y,X,Z
+    </script>
+</head>
+<body>
+<div id="header">
+    <h1>Басков Константин P3232 Вариант: 2890 <h1>
+</div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr height = "10">
+
+    </tr>
+    <tr>
+        <td width="50%">
+            <ul>
+                <li>
+                    <canvas id="graph" width="400" height="400" onmousemove="MiceHunter.value = event.pageX+':'+event.pageY" onmousedown = " Update() " onmouseup = "Draw()" onclick = "Y.value = (event.pageY-320)/20 , X.value = (event.pageX-280)/20"></canvas>
+                    <script>
+                        setInterval("Draw()", 20);
+
+                        function Draw() {
+
+
+                            var canvas = document.getElementById('graph');
+                            var ctx = canvas.getContext('2d');
+
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                            let y = document.getElementById("MiceHunterY").value;
+                            let x = document.getElementById("MiceHunterX").value;
+                            let r = document.getElementById("R1").value;
+
+
+                            //Рисуем Оси
+
+                            ctx.beginPath();
+                            ctx.moveTo(50, 200);
+                            ctx.lineTo(350, 200);
+                            ctx.moveTo(200,50);
+                            ctx.lineTo(200, 350);
+                            ctx.strokeStyle = '#000000';
+                            ctx.lineWidth = 5;
+                            ctx.stroke();
+
+                            if (1){
+
+                                //Рисуем квадрат
+
+                                ctx.beginPath();
+                                ctx.moveTo(200, 200);
+                                ctx.lineTo(200+r*10, 200);
+                                ctx.lineTo(200+r*10, 200+r*10);
+                                ctx.lineTo(200, 200+r*10);
+                                ctx.closePath();
+                                ctx.strokeStyle = '#000000';
+                                ctx.fillStyle = '#cc6333';
+                                ctx.fill();
+                                ctx.stroke();
+
+
+
+                                //Рисуем триугольник-заполнитель круга
+
+                                ctx.beginPath();
+                                ctx.moveTo(200, 200);
+                                ctx.lineTo(200, 200-r*10);
+                                ctx.lineTo(200-r*10, 200);
+                                ctx.lineTo(200, 200);
+                                ctx.closePath();
+                                ctx.strokeStyle = '#000000';
+                                ctx.fillStyle = '#cc6333';
+                                ctx.fill();
+
+                                //Рисуем четверть круга
+
+                                ctx.beginPath();
+                                ctx.arc(200, 200, r*10, Math.PI, -Math.PI/2);
+                                ctx.strokeStyle = '#000000';
+                                ctx.fillStyle = '#cc6333';
+                                ctx.fill()
+                                ctx.stroke();
+
+                                //Рисуем триугольник
+
+                                ctx.beginPath();
+                                ctx.moveTo(200, 200);
+                                ctx.lineTo(200, 200+r*5);
+                                ctx.lineTo(200-r*5, 200);
+                                ctx.lineTo(200, 200);
+                                ctx.closePath();
+                                ctx.strokeStyle = '#000000';
+                                ctx.fillStyle = '#cc6333';
+                                ctx.fill();
+                                ctx.stroke();
+
+                                ctx.beginPath();
+                                ctx.moveTo(50, 200);
+                                ctx.lineTo(350, 200);
+                                ctx.moveTo(200,50);
+                                ctx.lineTo(200, 350);
+                                ctx.strokeStyle = '#000000';
+                                ctx.lineWidth = 5;
+                                ctx.stroke();
+
+                                ctx.beginPath();
+                                ctx.arc(200+x*20, 200-y*20, 10, 0, 2*Math.PI);
+                                ctx.fillStyle = '#ff0000';
+                                ctx.strokeStyle = '#000000';
+                                ctx.fill();
+                                ctx.stroke();
+
+
+                            }
+                        }
+                    </script></li>
+            </ul>
+        </td>
+        <td width="50%"><form name="Locations" method="get" action="http://localhost:8080/ConrolServ_war_exploded/" >
+                <p><b>Значение X:</b><br>
+                    <input type="hidden" id="X" name="X" value="9000" >
+                    <input type="radio" name="X1" onchange="X.value='-4',CheckY(),CheckX(), CheckR(),MiceHunterX.value='-4'" value="-4"> -4
+                    <input type="radio" name="X1" onchange="X.value='-3',CheckY(),CheckX(), CheckR(),MiceHunterX.value='-3'" value="-3"> -3
+                    <input type="radio" name="X1" onchange="X.value='-2',CheckY(),CheckX(), CheckR(),MiceHunterX.value='-2'" value="-2"> -2
+                    <input type="radio" name="X1" onchange="X.value='-1',CheckY(),CheckX(), CheckR(),MiceHunterX.value='-1'" value="-1"> -1
+                    <input type="radio" name="X1" onchange="X.value='0',CheckY(),CheckX(), CheckR(),MiceHunterX.value='0'" value="0"> 0
+                    <input type="radio" name="X1" onchange="X.value='1',CheckY(),CheckX(), CheckR(),MiceHunterX.value='1'" value="1"> 1
+                    <input type="radio" name="X1" onchange="X.value='2',CheckY(),CheckX(), CheckR(),MiceHunterX.value='2'" value="2"> 2
+                    <input type="radio" name="X1" onchange="X.value='3',CheckY(),CheckX(), CheckR(),MiceHunterX.value='3'" value="3"> 3
+                    <input type="radio" name="X1" onchange="X.value='4',CheckY(),CheckX(), CheckR(),MiceHunterX.value='4'" value="4"> 4
+                </p>
+                <p><b>Значение Y:</b><Br>
+                    <input type="text" name="Y" id="Y" onchange="CheckY(), MiceHunterY.value = this.value" onclick="Y.value='',CheckY(),CheckX(), CheckR()" value = "Введите число от -3 до 5">
+                    <input id = "MiceHunter"  name="MiceHunter" >
+                    <input id = "MiceHunterX"  name="MiceHunterX" >
+                    <input id = "MiceHunterY"  name="MiceHunterY" >
+
+
+                </p>
+                <p><b>Значение R:</b><Br>
+                    <input type="hidden" id="R1" name="R1" value="9000" >
+                    <input type="radio" name="R" onchange="R1.value='2',CheckY(),CheckX(), CheckR()" value="2"> 1
+                    <input type="radio" name="R" onchange="R1.value='3',CheckY(),CheckX(), CheckR()" value="3"> 1,5
+                    <input type="radio" name="R" onchange="R1.value='4',CheckY(),CheckX(), CheckR()" value="4"> 2
+                    <input type="radio" name="R" onchange="R1.value='5',CheckY(),CheckX(), CheckR()" value="5"> 2,5
+                    <input type="radio" name="R" onchange="R1.value='6',CheckY(),CheckX(), CheckR()" value="6"> 3
+
+                <div id="okno">
+                    Вы не указали радиус !
+                </div>
+
+                </p>
+                <p>
+                    <input type="submit" onmouseover = "CheckY(),CheckX(), CheckR()" onclick = "Draw()" id="Submit" name="Submit" value="Отправить" >
+                </p>
+                <p><b></b><br>
+            </form>
+            <script>
+                setInterval("CheckY()", 2);
+                setInterval("CheckX()", 2);
+                setInterval("CheckR()", 2);
+
+
+                function Update() {
+                    let r = document.getElementById("R1").value;
+                    let CheckPassed = 0;
+                    for (let i=2; i<=6; i++){
+                        if (r==i){
+                            CheckPassed = 1;
+                        }
+                    }
+                    if (CheckPassed) {
+                        document.getElementById('okno').style.display = 'none';
+                        document.getElementById("MiceHunterY").value = ((event.pageY-320)/(-20)) ;
+                        document.getElementById("MiceHunterX").value = (event.pageX-280)/20;
+                    }
+                    else {
+
+                        document.getElementById('okno').style.display = 'block';
+                    }
+                }
+
+                function CheckY() {
+                    let y = document.getElementById("MiceHunterY").value;
+                    let CheckPassed = 0;
+                    for (let i=-3; i<=5; i++){
+                        if (y==i){
+                            CheckPassed = 1;
+                        }
+                    }
+                    if (CheckPassed) {
+                        document.getElementById("Submit").disabled = false
+                    }
+                    else {
+                        X.value="Введите число от -3 до 5";
+                        document.getElementById("Submit").disabled = true;
+                    }
+                }
+                function CheckX() {
+                    let x = document.getElementById("MiceHunterX").value;
+                    let CheckPassed = 0;
+                    for (let i=-4; i<=4; i++){
+                        if (x==i){
+                            CheckPassed = 1;
+                        }
+                    }
+                    if (CheckPassed) {
+                        document.getElementById("Submit").disabled = false
+                    }
+                    else {
+                        document.getElementById("Submit").disabled = true
+                    }
+                }
+                function CheckR() {
+                    let r = document.getElementById("R1").value;
+                    let CheckPassed = 0;
+                    for (let i=2; i<=6; i++){
+                        if (r==i){
+                            CheckPassed = 1;
+                        }
+                    }
+                    if (CheckPassed) {
+                        document.getElementById("Submit").disabled = false
+                    }
+                    else {
+
+                        document.getElementById("Submit").disabled = true
+                    }
+                }
+            </script>
+        </td>
+    </tr>
+</table>
+<table width="100%">
+    <tr id="List"><td width="10%">X</td>
+        <td width="10%">Y</td>
+        <td width="10%">R</td>
+        <td width="20%">Результат</td>
+        <td width="25%">Время</td>
+        <td width="25%">Скорость</td></tr>
+    <td></td><td></td><tr><tr><td>---</td><td>---</td><td>---</td><td>---</td><td>---</td></table>
+</body>
+</html>
